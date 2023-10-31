@@ -20,15 +20,15 @@ Primijetili smo da je trenutno vrlo teško pronaći informacije o događanjima, 
 
 Oznaka | Naziv | Kratki opis | Odgovorni član tima
 ------ | ----- | ----------- | -------------------
-F01 | Login | Korisnik će imati mogućnosti prijaviti se na aplikaciju| Darijo Bračić
-F02 | Pretraživanje po lokaciji  | Korisnik će imati mogućnost odabira lokacije događaja preko karte ili upisom u tražilicu, gdje će onda prema odabiru korisnika biti prikazani svi događaji na odabranoj lokaciji | Matej Desanić
-F03 | Pretraživanje po izvođaču | Korisnik će imati mogućnost odabira izvođača upisom u tražilicu, gdje će onda prema odabiru korisnika biti prikazani svi događaji odabranog izvođača neovisno o lokaciji | Darijo Bračić
-F04 | Pregled događaja | Korisnik će imati mogućnost odabira vrste događaja, koji može biti zabavni, edukativni, volonterski i slično | Ivan Juras
-F05 | Redirekcija plaćanja na stranice organizatora događaja | Korisnik će moći "kupiti" karte preko aplikacije, odnosno kada korisnik stisne za kupiti određenu kartu naša aplikacija će ga preusmjeriti na stranicu organizatora događaja gdje će korisnik moći kupiti kartu | Matej Desanić
-F06 | Prijava na newsletter | Korisnik će imati mogućnost prijave na newsletter, gdje će mu na e-mail dolaziti sve obavijesti o događanjima oko njega i događanjima koji ga zanimaju | Ivan Juras
-F07 | Personalizacija profila korisnika | Korisnik kada se prijavi u aplikaciju imat će opciju odabira najdražih izvođača, vrstu muzike, edukacije i svih ostalih preferenci koje bi korisnik mogao imati | Darijo Bračić
-F08 | Mogućnost favoriziranja događanja |  Korisnik će moći odabrati određeni događaj i staviti ih u svoje favorite  |Ivan Juras
-F09 | Pretraživanje po mjestu| Korisnik će imati opciju pretraživanja događanja po klubu,dvorani,resortu i sl.  | Matej Desanić 
+F01 | Login\Registracija | Običan korisnik će moću pretraživati aplikaciju bez korisničkog računa. Ako želi personalizirati doživljaj, korisnik će se morati registrirati, a to će raditi unosom email-a, lozinke i korisničkog imena. Login se vrši unosom korisničkog imena ili emaila, te lozinke. | Darijo Bračić
+F02 | Pretraživanje po lokaciji  | Korisnik će imati mogućnost odabira lokacije događaja preko karte ili upisom u tražilicu, gdje će onda prema odabiru korisnika biti prikazani svi događaji na odabranoj lokaciji. Zamislili smo i označavanje većeg područja pomoću alata za označavanje.  | Matej Desanić
+F03 | Pretraživanje po izvođaču | Korisnik će imati mogućnost odabira izvođača upisom u tražilicu, gdje će onda prema odabiru korisnika biti prikazani svi događaji odabranog izvođača neovisno o lokaciji | Ivan Juras
+F04 | Pregled događaja | Korisnik će imati mogućnost odabira vrste događaja, koji može biti zabavni (npr. festivali, večer u klubu), edukativni (npr. paneli, radionice), volonterski (npr. krvi). Filteri će biti ta tri naziva, a unutar njih se nalaze događaji koji sadržajem odgovaraju kategoriji. | Ivan Juras
+F05 | Redirekcija plaćanja na stranice organizatora događaja | Korisnik će moći "kupiti" karte preko aplikacije, odnosno kada korisnik stisne za kupiti određenu kartu naša aplikacija će ga preusmjeriti na stranicu organizatora događaja gdje će korisnik moći kupiti kartu | Darijo Bračić
+F06 | Push notifikacija | Za registrirane korisnike će biti moguće odabrati opciju primanja push notifikacija vezanih za korisnikove interese. | Ivan Juras
+F07 | Personalizacija profila korisnika | Korisnik kada se prijavi u aplikaciju imat će opciju odabira za što se koristi aplikacija (muzika, edukacije, volontiranje, sport, kombinacija više njih). Onda se za svaku kategoriju otvara upitnik, za muziku vrsta muzike, prostor događanje, trajanje događanja (jedan dan ili par dana (festival)); za edukaciju područje edukacije, trajanje edukacije, lokacija (remote ili uživo); za sport vrsta sporta, trajanje; i za volontiranje neće postojati dodatan upitnik. Na kraju se u upitnik upisuje preferira li korisnik besplatne događaje ili događaje koji se plaćaju. Za svaku opciju će postojati mogućnost "preskakanja" odgovora. | Matej Desanić
+F08 | Mogućnost favoriziranja događanja |  Korisnik će moći odabrati određeni događaj i staviti ih u svoje favorite, te će onda kasnije na svom profilu moći pronaći ta događanja. Koristilo bi se kako bi korisniku iskustvo bilo bolje, jer je lakše pregledati događanja za koja je korisnik zainteresiran na profilu, nego svaki put trebati pretraživati posebno. | Matej Desanić 
+F09 | Recenziranje lokacije koja ima tu mogućnost na Google Review | Preko Google Review API-ja smo planirali omogućiti recenzrianje događanja i lokacija koje imaju tu mogućnost na Google Review-u.  |  Darijo Bračić
 
 ## Tehnologije i oprema
 Izraditi ćemo aplikaciju u Kotlinu. Planiramo koristiti web scraping za dohvaćanje događanja te Google-ove API-ove za karte.
