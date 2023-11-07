@@ -15,3 +15,4 @@ dependencyResolutionManagement {
 
 rootProject.name = "EventFinder"
 include(":app")
+include(":app")
