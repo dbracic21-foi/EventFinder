@@ -1,0 +1,61 @@
+<!-- activity_login.xml -->
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="16dp">
+
+    <!-- Naslov "Login" -->
+    <!-- Promijenjena boja u plavu (#2196F3) -->
+
+    <!-- Linija ispod "Login" -->
+    <TextView
+        android:id="@+id/textViewTitleLogin"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="16dp"
+        android:gravity="center"
+        android:text="Event Finder"
+        android:textColor="#2196F3"
+        android:textSize="36sp"
+        android:textStyle="bold" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_below="@id/textViewTitleLogin"
+        android:background="#2196F3"/> <!-- Boja linije također postavljena na plavu (#2196F3) -->
+
+    <!-- Korisničko ime ili Email -->
+
+    <!-- Lozinka -->
+
+    <!-- Gumb za prijavu -->
+
+    <EditText
+        android:id="@+id/editTextUsernameOrEmail"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/textViewTitleLogin"
+        android:layout_marginTop="113dp"
+        android:layout_marginBottom="8dp"
+        android:hint="Korisničko ime ili Email"
+        android:inputType="text" />
+
+    <EditText
+        android:id="@+id/editTextPasswordLogin"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/editTextUsernameOrEmail"
+        android:layout_marginTop="31dp"
+        android:layout_marginBottom="8dp"
+        android:hint="Lozinka"
+        android:inputType="textPassword" />
+
+    <Button
+        android:id="@+id/buttonLogin"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/editTextPasswordLogin"
+        android:layout_marginTop="170dp"
+        android:text="Prijavi se" />
+</RelativeLayout>
