@@ -9,6 +9,12 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
+import androidx.room.Room
+import com.example.eventfinder.Database.DatabaseAPP
+import com.example.eventfinder.Database.User
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
 
 class RegistrationActivity : AppCompatActivity() {
     private var button: Button? = null
@@ -22,6 +28,8 @@ class RegistrationActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_registration)
+        val database  = Room.databaseBuilder(applicationContext, DatabaseAPP :: class.java, "App").build()
+
 
         button = findViewById<View>(R.id.buttonRegister) as Button
         textViewAlreadyLoggedIn = findViewById<View>(R.id.textViewAlreadyLoggedIn) as TextView
@@ -50,7 +58,20 @@ class RegistrationActivity : AppCompatActivity() {
         editTextPassword!!.addTextChangedListener(textWatcher)
         editTextEmail!!.addTextChangedListener(textWatcher)
 
-        button!!.setOnClickListener { openLogin() }
+        button!!.setOnClickListener {
+            val newUser = User(
+                firstName = editTextFirstName!!.text.toString(),
+                lastName = editTextLastName!!.text.toString(),
+                username = editTextUsername!!.text.toString(),
+                pasword = editTextPassword!!.text.toString(),
+                Email = editTextEmail!!.text.toString()
+            )
+            GlobalScope.launch(Dispatchers.IO) {
+                val userdao = database.UsersDAO()
+                userdao.insertUser(newUser)
+            }
+
+            openLogin() }
 
         textViewAlreadyLoggedIn!!.setOnClickListener {
             openLogin()
