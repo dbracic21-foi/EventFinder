@@ -7,6 +7,9 @@ android {
     namespace = "com.example.eventfinder"
     compileSdk = 34
 
+    viewBinding{
+        enable = true
+    }
     defaultConfig {
         applicationId = "com.example.eventfinder"
         minSdk = 24
