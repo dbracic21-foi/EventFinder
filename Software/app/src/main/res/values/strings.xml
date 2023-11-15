@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">EventFinder</string>
+    <string name="select">Izaberi događaj</string>
 </resources>

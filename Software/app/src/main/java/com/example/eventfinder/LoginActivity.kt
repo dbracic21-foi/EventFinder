@@ -16,9 +16,12 @@ class LoginActivity : AppCompatActivity() {
     private var editTextUserNameOrEmail : EditText? = null
     private var editTextPassword : EditText? = null
 
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
+
+        ButtonLogin!!.setOnClickListener { View.OnClickListener{startActivity(Intent(this, ViewerActivity::class.java))} }
 
         ButtonLogin = findViewById<View>(R.id.buttonLogin) as Button
         textviewNeedAccount = findViewById<View>(R.id.textviewNeedAccount) as TextView
