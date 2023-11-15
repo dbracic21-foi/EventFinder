@@ -95,7 +95,9 @@
         android:text="Već ste prijavljeni."
         android:layout_below="@+id/buttonRegister"
         android:layout_marginTop="8dp"
-        android:layout_centerHorizontal="true" />
+        android:layout_centerHorizontal="true"
+        android:clickable="true"
+        android:focusable="true" />
 
 
 </RelativeLayout>

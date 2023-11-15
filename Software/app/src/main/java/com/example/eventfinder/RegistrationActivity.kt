@@ -1,35 +1,32 @@
-package com.example.eventfinder;
-import android.content.Intent;
-import android.os.Bundle;
+package com.example.eventfinder
 
-import android.view.View;
-import android.widget.Button;
+import android.content.Intent
+import android.os.Bundle
+import android.view.View
+import android.widget.Button
+import android.widget.TextView
+import androidx.appcompat.app.AppCompatActivity
+class RegistrationActivity : AppCompatActivity() {
+    private var button: Button? = null
+    private var textViewAlreadyLoggedIn: TextView? = null
 
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_registration)
 
-import androidx.appcompat.app.AppCompatActivity;
-public class RegistrationActivity extends AppCompatActivity {
-private  Button button;
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_registration);
+        button = findViewById<View>(R.id.buttonRegister) as Button
+        textViewAlreadyLoggedIn = findViewById<View>(R.id.textViewAlreadyLoggedIn) as TextView
 
-        button = (Button) findViewById(R.id.buttonRegister);
-        button.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                openLogin();
-            }
-        });
+        button!!.setOnClickListener { openLogin() }
 
-
+        textViewAlreadyLoggedIn!!.setOnClickListener {
+             openLogin()
+        }
     }
-    public void openLogin() {
 
-
-        Intent intent = new Intent(this, LoginActivity.class);
-        startActivity(intent);
-        finish();
-
+    fun openLogin() {
+        val intent = Intent(this, LoginActivity::class.java)
+        startActivity(intent)
+        finish()
     }
 }

@@ -4,10 +4,7 @@
     android:layout_height="match_parent"
     android:padding="16dp">
 
-    <!-- Naslov "Login" -->
-    <!-- Promijenjena boja u plavu (#2196F3) -->
 
-    <!-- Linija ispod "Login" -->
     <TextView
         android:id="@+id/textViewTitleLogin"
         android:layout_width="match_parent"
@@ -23,13 +20,9 @@
         android:layout_width="match_parent"
         android:layout_height="1dp"
         android:layout_below="@id/textViewTitleLogin"
-        android:background="#2196F3"/> <!-- Boja linije također postavljena na plavu (#2196F3) -->
+        android:background="#2196F3"/>
 
-    <!-- Korisničko ime ili Email -->
 
-    <!-- Lozinka -->
-
-    <!-- Gumb za prijavu -->
 
     <EditText
         android:id="@+id/editTextUsernameOrEmail"
@@ -50,6 +43,17 @@
         android:layout_marginBottom="8dp"
         android:hint="Lozinka"
         android:inputType="textPassword" />
+
+    <TextView
+        android:id="@+id/textviewNeedAccount"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Niste registrirani !"
+        android:layout_below="@+id/buttonLogin"
+        android:layout_marginTop="8dp"
+        android:layout_centerHorizontal="true"
+        android:clickable="true"
+        android:focusable="true" />
 
     <Button
         android:id="@+id/buttonLogin"
