@@ -1,4 +1,9 @@
 <!-- activity_login.xml -->
+<androidx.coordinatorlayout.widget.CoordinatorLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="16dp">
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -62,4 +67,15 @@
         android:layout_below="@id/editTextPasswordLogin"
         android:layout_marginTop="170dp"
         android:text="Prijavi se" />
+    
+    <TextView
+        android:id="@+id/textViewError"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text=""
+        android:textColor="@color/black"
+        android:visibility="invisible"
+        android:layout_marginTop="8dp"
+        />
 </RelativeLayout>
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

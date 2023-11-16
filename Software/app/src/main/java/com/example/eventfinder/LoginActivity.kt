@@ -1,16 +1,20 @@
 package com.example.eventfinder
 
 import android.content.Intent
+import android.opengl.Visibility
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
+import android.view.Gravity
 import android.view.View
 import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
+import androidx.coordinatorlayout.widget.CoordinatorLayout
 import androidx.room.Room
 import com.example.eventfinder.Database.DatabaseAPP
+import com.google.android.material.snackbar.Snackbar
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
@@ -21,7 +25,6 @@ class LoginActivity : AppCompatActivity() {
     private var editTextUserNameOrEmail : EditText? = null
     private var editTextPassword : EditText? = null
 
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
@@ -31,7 +34,6 @@ class LoginActivity : AppCompatActivity() {
         editTextUserNameOrEmail = findViewById<View>(R.id.editTextUsernameOrEmail) as EditText
         editTextPassword = findViewById<View>(R.id.editTextPasswordLogin) as EditText
         ButtonLogin!!.isEnabled = false
-
         val textWatcher = object : TextWatcher{
             override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
 
@@ -52,6 +54,19 @@ class LoginActivity : AppCompatActivity() {
             openRegisterForm()
         }
     }
+     fun showErrorMessage(message : String){
+        val snackbar = Snackbar.make(
+            findViewById(android.R.id.content),
+            message,
+            Snackbar.LENGTH_INDEFINITE
+        )
+        
+         snackbar.setAction("Zatvori"){
+             snackbar.dismiss()
+         }
+         snackbar.show()
+    }
+
     private fun validateFields(){
         val allFieldsFilled = !editTextUserNameOrEmail!!.text.isNullOrBlank() && !editTextPassword!!.text.isNullOrBlank()
         ButtonLogin!!.isEnabled = allFieldsFilled
@@ -78,6 +93,7 @@ class LoginActivity : AppCompatActivity() {
                 if(user != null){
                 openMainActivity()
             }   else{
+                showErrorMessage("Krivo ste unijeli korisnicko ime ili lozinku")
                 println("Pogresno korisnicko ime ili lozinka")
             }  }
 
