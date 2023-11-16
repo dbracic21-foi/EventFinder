@@ -9,6 +9,11 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
+import androidx.room.Room
+import com.example.eventfinder.Database.DatabaseAPP
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
 
 class LoginActivity : AppCompatActivity() {
     private var ButtonLogin : Button? = null
@@ -16,10 +21,11 @@ class LoginActivity : AppCompatActivity() {
     private var editTextUserNameOrEmail : EditText? = null
     private var editTextPassword : EditText? = null
 
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
-
+        val database  = Room.databaseBuilder(applicationContext, DatabaseAPP :: class.java, "App").build()
         ButtonLogin = findViewById<View>(R.id.buttonLogin) as Button
         textviewNeedAccount = findViewById<View>(R.id.textviewNeedAccount) as TextView
         editTextUserNameOrEmail = findViewById<View>(R.id.editTextUsernameOrEmail) as EditText
@@ -38,6 +44,10 @@ class LoginActivity : AppCompatActivity() {
         editTextUserNameOrEmail!!.addTextChangedListener(textWatcher)
         editTextPassword!!.addTextChangedListener(textWatcher)
 
+        ButtonLogin!!.setOnClickListener{
+            loginUser()
+        }
+
         textviewNeedAccount!!.setOnClickListener{
             openRegisterForm()
         }
@@ -50,5 +60,29 @@ class LoginActivity : AppCompatActivity() {
         var intent = Intent(this, RegistrationActivity :: class.java)
         startActivity(intent)
         finish()
+    }
+    fun openMainActivity(){
+        var intent = Intent(this,MainActivity :: class.java)
+        startActivity(intent)
+        finish()
+    }
+    fun loginUser(){
+        val  usernameOrEmail = editTextUserNameOrEmail!!.text.toString()
+        val password = editTextPassword!!.text.toString()
+        val database  = Room.databaseBuilder(applicationContext, DatabaseAPP :: class.java, "App").build()
+
+        GlobalScope.launch (Dispatchers.IO){
+            val userDAO = database.UsersDAO()
+            val  user = userDAO.getUserByUsernameAndPassword(usernameOrEmail,password)
+            launch (Dispatchers.Main){
+                if(user != null){
+                openMainActivity()
+            }   else{
+                println("Pogresno korisnicko ime ili lozinka")
+            }  }
+
+        }
+
+
     }
 }

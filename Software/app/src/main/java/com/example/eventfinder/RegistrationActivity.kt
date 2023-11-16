@@ -69,6 +69,7 @@ class RegistrationActivity : AppCompatActivity() {
             GlobalScope.launch(Dispatchers.IO) {
                 val userdao = database.UsersDAO()
                 userdao.insertUser(newUser)
+                println("Korisnik uspjesno registriran : $newUser")
             }
 
             openLogin() }

@@ -9,6 +9,6 @@ interface UsersDAO {
     @Insert
     fun insertUser(user: User)
 
-    @Query("Select * FROM users WHERE username = :username AND pasword = :password")
+    @Query("Select * FROM users WHERE (username = :username OR Email = :username) AND pasword = :password")
     fun getUserByUsernameAndPassword(username : String, password: String) : User?
 }
