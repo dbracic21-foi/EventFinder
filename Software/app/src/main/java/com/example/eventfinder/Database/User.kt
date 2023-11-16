@@ -2,7 +2,6 @@ package com.example.eventfinder.Database
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey
-import java.sql.RowId
 
 @Entity(tableName = "users")
 data class User (
