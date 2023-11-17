@@ -36,7 +36,7 @@
         android:layout_width="40dp"
         android:layout_height="40dp"
         android:layout_margin="20dp"
-        android:background="@drawable/btn_draw_polygon"
+        android:background="@drawable/rounded_btn"
         android:backgroundTint="@color/powder_blue"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/mapSearch" />

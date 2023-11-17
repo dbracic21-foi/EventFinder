@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <!-- Background shape (circle) -->
+    <item>
+        <shape
+            android:shape="oval">
+            <solid android:color="@android:color/transparent" />
+            <stroke
+                android:color="@color/white"
+                android:width="2dp" />
+        </shape>
+    </item>
+
+    <!-- Your custom drawable placed in the center of the circle -->
+    <item
+        android:drawable="@drawable/btn_draw_polygon"
+        android:left="8dp"
+        android:right="8dp"
+        android:top="8dp"
+        android:bottom="8dp"
+        />
+</layer-list>
