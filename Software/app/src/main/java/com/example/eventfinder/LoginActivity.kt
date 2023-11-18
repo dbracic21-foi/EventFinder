@@ -73,7 +73,7 @@ class LoginActivity : AppCompatActivity() {
         finish()
     }
     fun openMainActivity(){
-        val intent = Intent(this,MapsFragment :: class.java)
+        val intent = Intent(this,ViewerActivity :: class.java)
         startActivity(intent)
         finish()
     }
