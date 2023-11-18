@@ -14,6 +14,7 @@
         tools:targetApi="31">
         <activity android:name=".RegistrationActivity"/>
         <activity android:name=".MapsFragment"/>
+        <activity android:name=".ViewerActivity"/>
         <activity
             android:name=".LoginActivity"
             android:exported="true">
