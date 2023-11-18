@@ -7,7 +7,7 @@
         android:id="@+id/textViewTitle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Event Finder"
+        android:text="@string/title_login"
         android:textSize="36sp"
         android:textStyle="bold"
         android:gravity="center"
@@ -29,9 +29,10 @@
         android:layout_below="@id/textViewTitle"
         android:layout_marginTop="45dp"
         android:layout_marginBottom="8dp"
-        android:hint="Ime"
+        android:hint="@string/name"
         android:inputType="textPersonName"
-        android:minHeight="48dp"/>
+        android:minHeight="48dp"
+        android:autofillHints="name"/>
 
     <EditText
         android:id="@+id/editTextUsername"
@@ -40,9 +41,10 @@
         android:layout_below="@id/editTextLastName"
         android:layout_marginTop="16dp"
         android:layout_marginBottom="8dp"
-        android:hint="Korisničko ime"
+        android:hint="@string/username"
         android:inputType="text"
-        android:minHeight="48dp"/>
+        android:minHeight="48dp"
+        android:autofillHints="username"/>
 
     <EditText
         android:id="@+id/editTextPassword"
@@ -51,7 +53,7 @@
         android:layout_below="@id/editTextUsername"
         android:layout_marginTop="16dp"
         android:layout_marginBottom="8dp"
-        android:hint="Lozinka"
+        android:hint="@string/password_login"
         android:inputType="textPassword"
         android:minHeight="48dp"/>
 
@@ -62,9 +64,10 @@
         android:layout_below="@id/editTextPassword"
         android:layout_marginTop="16dp"
         android:layout_marginBottom="8dp"
-        android:hint="Email"
+        android:hint="@string/email"
         android:inputType="textEmailAddress"
-        android:minHeight="48dp"/>
+        android:minHeight="48dp"
+        android:autofillHints="emailAddress"/>
 
     <EditText
         android:id="@+id/editTextLastName"
@@ -73,12 +76,11 @@
         android:layout_below="@id/editTextFirstName"
         android:layout_marginTop="16dp"
         android:layout_marginBottom="8dp"
-        android:hint="Prezime"
+        android:hint="@string/lastname"
         android:inputType="textPersonName"
         android:minHeight="48dp"/>
 
 
-    <!-- Tekst iznad gumba "Registriraj se" -->
 
     <Button
         android:id="@+id/buttonRegister"
@@ -86,14 +88,16 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/editTextEmail"
         android:layout_marginTop="45dp"
-        android:text="Registriraj se"
+        android:text="@string/register"
         android:enabled="false" />
 
     <TextView
         android:id="@+id/textViewAlreadyLoggedIn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Već ste prijavljeni."
+        android:text="@string/alreadylogged"
+        android:textSize="12sp"
+        android:textStyle="bold"
         android:layout_below="@+id/buttonRegister"
         android:layout_marginTop="8dp"
         android:layout_centerHorizontal="true"

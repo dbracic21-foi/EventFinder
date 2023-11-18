@@ -3,4 +3,16 @@
     <string name="item_label">Izaberi događaj</string>
     <string name="kategorija">Svi</string>
     <string name="lokacija">Odaberi lokaciju</string>
+    <string name ="login_button_text">Prijavi se</string>
+    <string name = "title_login">Event Finder</string>
+    <string name = "username_email">Korisničko ime ili Email</string>
+    <string name="password_login">Lozinka</string>
+    <string name= "need_account">Niste registrirani !</string>
+    <string name ="name">Ime</string>
+    <string name="username">Korisničko ime</string>
+    <string name="email">Email</string>
+    <string name ="lastname">Prezime</string>
+    <string name ="register">Registriraj se </string>
+    <string name = "alreadylogged">Već ste registrirani</string>
+    <string name="my_map_api_key">AIzaSyAJvXQCem6iUOFj2Ho2AFrj5sT4W0jHoKw</string>
 </resources>
