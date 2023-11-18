@@ -25,7 +25,6 @@ class LoginActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
-        val database  = Room.databaseBuilder(applicationContext, DatabaseAPP :: class.java, "App").build()
         ButtonLogin = findViewById<View>(R.id.buttonLogin) as Button
         textviewNeedAccount = findViewById<View>(R.id.textviewNeedAccount) as TextView
         editTextUserNameOrEmail = findViewById<View>(R.id.editTextUsernameOrEmail) as EditText
@@ -69,12 +68,12 @@ class LoginActivity : AppCompatActivity() {
         ButtonLogin!!.isEnabled = allFieldsFilled
     }
     fun openRegisterForm(){
-        var intent = Intent(this, RegistrationActivity :: class.java)
+        val intent = Intent(this, RegistrationActivity :: class.java)
         startActivity(intent)
         finish()
     }
     fun openMainActivity(){
-        var intent = Intent(this,MainActivity :: class.java)
+        val intent = Intent(this,MapsFragment :: class.java)
         startActivity(intent)
         finish()
     }

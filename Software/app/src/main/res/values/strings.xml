@@ -11,5 +11,5 @@
     <string name ="lastname">Prezime</string>
     <string name ="register">Registriraj se </string>
     <string name = "alreadylogged">Već ste registrirani</string>
-
+    <string name="my_map_api_key">AIzaSyAJvXQCem6iUOFj2Ho2AFrj5sT4W0jHoKw</string>
 </resources>
