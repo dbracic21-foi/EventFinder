@@ -38,7 +38,6 @@ class EventAdapter(private val eventsList: List<Event>): RecyclerView.Adapter<Ev
         return EventViewHolder(taskView)
     }
 
-
     override fun getItemCount() = eventsList.size
 
     override fun onBindViewHolder(holder: EventViewHolder, position: Int) {
