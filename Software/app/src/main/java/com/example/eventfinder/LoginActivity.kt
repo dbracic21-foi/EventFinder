@@ -4,6 +4,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
+import android.util.Log
 import android.view.View
 import android.widget.Button
 import android.widget.EditText
@@ -23,6 +24,8 @@ class LoginActivity : AppCompatActivity() {
     private var editTextPassword : EditText? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
+        DatabaseAPP.buildInstance(applicationContext)
+
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
         ButtonLogin = findViewById<View>(R.id.buttonLogin) as Button
@@ -80,11 +83,11 @@ class LoginActivity : AppCompatActivity() {
     fun loginUser(){
         val  usernameOrEmail = editTextUserNameOrEmail!!.text.toString()
         val password = editTextPassword!!.text.toString()
-        val database  = Room.databaseBuilder(applicationContext, DatabaseAPP :: class.java, "App").build()
 
         GlobalScope.launch (Dispatchers.IO){
-            val userDAO = database.UsersDAO()
-            val  user = userDAO.getUserByUsernameAndPassword(usernameOrEmail,password)
+            val user = DatabaseAPP.getInstance().UsersDAO().getUserByUsernameAndPassword(usernameOrEmail,password)
+            Log.d("YourTag", "User: $user")
+            println(user)
             launch (Dispatchers.Main){
                 if(user != null){
                 openMainActivity()

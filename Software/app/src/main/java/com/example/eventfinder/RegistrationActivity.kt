@@ -28,7 +28,7 @@ class RegistrationActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_registration)
-        val database  = Room.databaseBuilder(applicationContext, DatabaseAPP :: class.java, "App").build()
+        DatabaseAPP.buildInstance(applicationContext)
 
 
         button = findViewById<View>(R.id.buttonRegister) as Button
@@ -67,8 +67,7 @@ class RegistrationActivity : AppCompatActivity() {
                 Email = editTextEmail!!.text.toString()
             )
             GlobalScope.launch(Dispatchers.IO) {
-                val userdao = database.UsersDAO()
-                userdao.insertUser(newUser)
+                DatabaseAPP.getInstance().UsersDAO().insertUser(newUser)
                 println("Korisnik uspjesno registriran : $newUser")
             }
 
