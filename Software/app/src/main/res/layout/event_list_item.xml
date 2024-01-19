@@ -29,6 +29,17 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 tools:text="28.1.2023." />
+            <TextView
+                android:id="@+id/textViewEventName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Event Name"/>
+
+            <Button
+                android:id="@+id/buttonRedirect"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Plati"/>
         </LinearLayout>
     </LinearLayout>
 </androidx.cardview.widget.CardView>

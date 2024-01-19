@@ -1,10 +1,13 @@
 package com.example.eventfinder.adapters
 
+import com.example.eventfinder.RedirectActivity
+import android.content.Intent
 import android.icu.text.SimpleDateFormat
 import android.view.LayoutInflater
 import android.view.SurfaceView
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
 import android.widget.TextView
 import androidx.core.graphics.toColorInt
 import androidx.recyclerview.widget.RecyclerView
@@ -18,10 +21,22 @@ class EventAdapter(private val eventsList: List<Event>): RecyclerView.Adapter<Ev
         private val taskName: TextView
         private val taskDueDate: TextView
         private val taskCategoryColor: SurfaceView
+        private val  buttonRedirect : Button
+
         init {
             taskName = view.findViewById(R.id.tv_task_name)
             taskDueDate = view.findViewById(R.id.tv_task_due_date)
             taskCategoryColor = view.findViewById(R.id.sv_task_category_color)
+            buttonRedirect = view.findViewById(R.id.buttonRedirect)
+            buttonRedirect.setOnClickListener {
+                val position = adapterPosition
+                if (position != RecyclerView.NO_POSITION) {
+                    val event = eventsList[position]
+                    val intent = Intent(itemView.context, RedirectActivity::class.java)
+                    intent.putExtra("urlOrganizer", event.urlOrganizer)
+                    itemView.context.startActivity(intent)
+                }
+            }
         }
         fun bind(event: Event) {
             taskName.text = event.name
@@ -35,6 +50,7 @@ class EventAdapter(private val eventsList: List<Event>): RecyclerView.Adapter<Ev
         val taskView = LayoutInflater
             .from(parent.context)
             .inflate(R.layout.event_list_item, parent, false)
+
         return EventViewHolder(taskView)
     }
 
