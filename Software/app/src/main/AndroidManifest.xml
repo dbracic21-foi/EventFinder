@@ -15,6 +15,7 @@
         <activity android:name=".RegistrationActivity"/>
         <activity android:name=".MapsFragment"/>
         <activity android:name=".ViewerActivity"/>
+        <activity android:name=".RedirectActivity"/>
         <activity
             android:name=".LoginActivity"
             android:exported="true">
