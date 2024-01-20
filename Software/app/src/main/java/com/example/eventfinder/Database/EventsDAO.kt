@@ -1,6 +1,5 @@
 package com.example.eventfinder.Database
 
-import android.util.Log
 import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
@@ -17,4 +16,7 @@ interface EventsDAO {
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insertEvent(vararg event: Event): List<Long>
+
+    @Query("SELECT * FROM events WHERE location IN (:cityNames)")
+    fun getEventsInCities(cityNames: List<String>): List<Event>
 }
