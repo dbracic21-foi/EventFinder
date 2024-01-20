@@ -29,19 +29,18 @@ class EventAdapter(private val eventsList: List<Event>): RecyclerView.Adapter<Ev
             taskCategoryColor = view.findViewById(R.id.sv_task_category_color)
             buttonRedirect = view.findViewById(R.id.buttonRedirect)
             buttonRedirect.setOnClickListener {
-                val position = adapterPosition
-                if (position != RecyclerView.NO_POSITION) {
-                    val event = eventsList[position]
-                    val intent = Intent(itemView.context, RedirectActivity::class.java)
-                    intent.putExtra("urlOrganizer", event.urlOrganizer)
-                    itemView.context.startActivity(intent)
-                }
+                val event = eventsList[adapterPosition]
+                val intent = Intent(itemView.context, RedirectActivity::class.java)
+                intent.putExtra("urlOrganizer", event.urlOrganizer)
+                itemView.context.startActivity(intent)
+                
             }
         }
         fun bind(event: Event) {
             taskName.text = event.name
             taskDueDate.text = sdf.format(event.date)
             taskCategoryColor.setBackgroundColor(event.category.color.toColorInt())
+            println("URL for ${event.name}: ${event.urlOrganizer}")
         }
 
     }

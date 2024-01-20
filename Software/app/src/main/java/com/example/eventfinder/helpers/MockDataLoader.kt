@@ -23,7 +23,7 @@ object MockDataLoader {
 
             val events = arrayOf(
                 Event(1,"Vojko V u tvornici kulture", Date(), dbCategories[0].id, "Zagreb", "Lorem ipsum dolor sit amet, consectetur adipiscing elit.","https://www.eventim.hr/hr/ulaznice/vojko-v-zagreb-dom-sportova-494656/event.html"),
-                Event(2,"Radionica izrade web stranica", Date(),dbCategories[1].id, "Šibenik", "Lorem ipsum dolor sit amet, consectetur adipiscing elit.","https://www.radionica.hr/izrada-kvalitetne-web-stranice/"),
+                Event(2,"Radionica izrade web stranica", Date(),dbCategories[1].id, "Šibenik", "Lorem ipsum dolor sit amet, consectetur adipiscing elit.","https://www.hck.hr/kako-pomoci/darujte-krv/dobrovoljno-davanje-krvi-165/165"),
                 Event(3,"Doniranje krvi", Date(), dbCategories[2].id, "Varaždin", "Lorem ipsum dolor sit amet, consectetur adipiscing elit.","https://www.hck.hr/kako-pomoci/darujte-krv/dobrovoljno-davanje-krvi-165/165"),
                 Event(4,"Koncert Central Cee-a", Date(), dbCategories[0].id, "Ljubljana", "Lorem ipsum dolor sit amet, consectetur adipiscing elit.","https://www.eventim.si/si/vstopnice/offline-x-central-cee-ljubljana-hala-l56-industrijska-cona-litostroj-603692/event.html"),
                 Event(5, "Stand-up show: Smijeh do suza", Date(), dbCategories[0].id, "Split", "Nasmijte se uz najbolje stand-up komičare u regiji.","https://www.ulaznice.hr/web/event/38/11588"),
@@ -43,7 +43,10 @@ object MockDataLoader {
                 Event(19, "Volonterska akcija sadnje drveća", Date(), dbCategories[2].id, "Varaždin", "Pomozite očuvati prirodu sudjelovanjem u akciji sadnje drveća.","https://srbi.hr/prva-volonterska-akcija-daljskog-dvorista/"),
                 Event(20, "Koncert jazz sastava", Date(), dbCategories[0].id, "Zagreb", "Uživajte u glazbi jazz sastava na nezaboravnom koncertu.","https://www.jazz.hr/"),
             )
+
             eventsDao.insertEvent(*events)
+
         }
+
     }
 }
