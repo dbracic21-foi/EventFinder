@@ -8,17 +8,22 @@ import android.widget.ArrayAdapter
 import android.widget.AutoCompleteTextView
 import android.widget.Button
 import android.widget.ImageView
+import androidx.appcompat.widget.SearchView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.eventfinder.Database.DatabaseAPP
 import com.example.eventfinder.adapters.EventAdapter
+import com.example.eventfinder.entities.Event
 import com.example.eventfinder.helpers.MockDataLoader
+import java.util.Locale
 
 class ViewerActivity : AppCompatActivity() {
 
     private lateinit var recyclerView: RecyclerView
-
+    private lateinit var searchView: SearchView
+    private lateinit var searchList: ArrayList<Event>
+    private lateinit var dataList: ArrayList<Event>
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_combobox)
@@ -26,12 +31,48 @@ class ViewerActivity : AppCompatActivity() {
         DatabaseAPP.buildInstance(applicationContext)
         MockDataLoader.loadMockData()
 
+        val events = DatabaseAPP.getInstance().getEventsDao().getAllEvents()
+
+        searchList = arrayListOf<Event>()
+        dataList = ArrayList(events)
+        searchList.addAll(dataList)
+
+
+        searchView = findViewById(R.id.search)
         recyclerView = findViewById(R.id.events)
         recyclerView.layoutManager = LinearLayoutManager(this)
-        val categories = DatabaseAPP.getInstance().getEventCategoriesDao().getAllCategories()
+        recyclerView.adapter = EventAdapter(searchList)
 
-        val events = DatabaseAPP.getInstance().getEventsDao().getAllEvents()
-        recyclerView.adapter = EventAdapter(events.toMutableList())
+
+
+
+
+        searchView.clearFocus()
+        searchView.setOnQueryTextListener(object: SearchView.OnQueryTextListener{
+            override fun onQueryTextSubmit(query: String?): Boolean {
+                searchView.clearFocus()
+                return true
+            }
+
+            override fun onQueryTextChange(newText: String?): Boolean {
+                searchList.clear()
+                val searchText = newText!!.toLowerCase(Locale.getDefault())
+                Log.d("ViewerActivity", "Search text: ${searchText}")
+                if(searchText.isNotEmpty()){
+                    dataList.forEach{
+                        if(it.name.toLowerCase(Locale.getDefault()).contains(searchText)){
+                            searchList.add(it)
+                        }
+                    }
+                } else{
+                    searchList.clear()
+                    searchList.addAll(dataList)
+                }
+                recyclerView.adapter?.notifyDataSetChanged()
+                return true
+            }
+
+        })
 
         val items = listOf("Svi", "Zabavni", "Edukativni", "Volonterski")
         val autoComplete: AutoCompleteTextView = findViewById(R.id.auto_complete)
