@@ -8,6 +8,7 @@ import android.view.SurfaceView
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import android.widget.ImageView
 import android.widget.TextView
 import androidx.core.graphics.toColorInt
 import androidx.recyclerview.widget.RecyclerView
@@ -22,6 +23,7 @@ class EventAdapter(private val eventsList: List<Event>): RecyclerView.Adapter<Ev
         private val taskDueDate: TextView
         private val taskCategoryColor: SurfaceView
         private val  buttonRedirect : Button
+        private val imageViewFavorite: ImageView = view.findViewById(R.id.imageViewFavorite)
 
         init {
             taskName = view.findViewById(R.id.tv_task_name)
@@ -33,7 +35,12 @@ class EventAdapter(private val eventsList: List<Event>): RecyclerView.Adapter<Ev
                 val intent = Intent(itemView.context, RedirectActivity::class.java)
                 intent.putExtra("urlOrganizer", event.urlOrganizer)
                 itemView.context.startActivity(intent)
-                
+            }
+
+            imageViewFavorite.setOnClickListener {
+                val event = eventsList[adapterPosition]
+                event.isFavorite = !event.isFavorite
+                updateFavoriteImage(event.isFavorite)
             }
         }
         fun bind(event: Event) {
@@ -43,6 +50,14 @@ class EventAdapter(private val eventsList: List<Event>): RecyclerView.Adapter<Ev
             println("URL for ${event.name}: ${event.urlOrganizer}")
         }
 
+        private fun updateFavoriteImage(isFavorite: Boolean) {
+            val drawableResource = if (isFavorite)
+                R.drawable.baseline_turned_in_24_yellow
+            else
+                R.drawable.baseline_turned_in_24_grey
+
+            imageViewFavorite.setImageResource(drawableResource)
+        }
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): EventViewHolder {

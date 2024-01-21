@@ -6,40 +6,52 @@
     android:layout_height="wrap_content"
     android:layout_margin="3dp"
     android:elevation="10dp">
+
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
         <SurfaceView
             android:id="@+id/sv_task_category_color"
             android:layout_width="15dp"
             android:layout_height="match_parent" />
+
         <LinearLayout
-            android:layout_width="match_parent"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_weight="1"
             android:orientation="vertical"
             android:padding="10dp">
+
             <TextView
                 android:id="@+id/tv_task_name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textSize="20sp"
                 tools:text="Name of a task" />
+
             <TextView
                 android:id="@+id/tv_task_due_date"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 tools:text="28.1.2023." />
-            <TextView
-                android:id="@+id/textViewEventName"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Event Name"/>
 
             <Button
                 android:id="@+id/buttonRedirect"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Pogledaj Više"/>
+
         </LinearLayout>
+
+        <ImageView
+            android:id="@+id/imageViewFavorite"
+            android:layout_width="89dp"
+            android:layout_height="73dp"
+            android:layout_gravity="center_vertical"
+            android:contentDescription="Favorite button"
+            android:src="@drawable/baseline_turned_in_24_grey" />
+
     </LinearLayout>
 </androidx.cardview.widget.CardView>
