@@ -1,21 +1,20 @@
 package com.example.eventfinder.adapters
 
+import com.example.eventfinder.RedirectActivity
 import android.content.Intent
-import android.util.Log
+import android.icu.text.SimpleDateFormat
 import android.view.LayoutInflater
 import android.view.SurfaceView
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
-import android.widget.ImageView
 import android.widget.TextView
 import androidx.core.graphics.toColorInt
 import androidx.recyclerview.widget.RecyclerView
 import com.example.eventfinder.Database.DatabaseAPP
 import com.example.eventfinder.R
-import com.example.eventfinder.RedirectActivity
+import com.example.eventfinder.ReviewActivity
 import com.example.eventfinder.entities.Event
-import java.text.SimpleDateFormat
 import java.util.Locale
 
 class EventAdapter(private val eventsList: List<Event>) :
@@ -28,12 +27,25 @@ class EventAdapter(private val eventsList: List<Event>) :
         private val taskCategoryColor: SurfaceView = view.findViewById(R.id.sv_task_category_color)
         private val buttonRedirect: Button = view.findViewById(R.id.buttonRedirect)
         private val imageViewFavorite: ImageView = view.findViewById(R.id.imageViewFavorite)
+        private val  buttonReview: Button
 
         init {
+            taskName = view.findViewById(R.id.tv_task_name)
+            taskDueDate = view.findViewById(R.id.tv_task_due_date)
+            taskCategoryColor = view.findViewById(R.id.sv_task_category_color)
+            buttonRedirect = view.findViewById(R.id.buttonRedirect)
+            buttonReview = view.findViewById(R.id.buttonReview)
             buttonRedirect.setOnClickListener {
                 val event = eventsList[adapterPosition]
                 val intent = Intent(itemView.context, RedirectActivity::class.java)
                 intent.putExtra("urlOrganizer", event.urlOrganizer)
+                itemView.context.startActivity(intent)
+            }
+
+            buttonReview.setOnClickListener {
+                val event = eventsList[adapterPosition]
+                val intent = Intent(itemView.context, ReviewActivity::class.java)
+                intent.putExtra("eventId", event.id)
                 itemView.context.startActivity(intent)
             }
 
@@ -44,7 +56,6 @@ class EventAdapter(private val eventsList: List<Event>) :
                 updateEvent(event);
             }
         }
-
         fun bind(event: Event) {
             taskName.text = event.name
             taskDueDate.text = sdf.format(event.date)
@@ -78,4 +89,5 @@ class EventAdapter(private val eventsList: List<Event>) :
     override fun onBindViewHolder(holder: EventViewHolder, position: Int) {
         holder.bind(eventsList[position])
     }
+
 }
