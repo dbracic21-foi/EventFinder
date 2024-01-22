@@ -28,8 +28,8 @@ data class Event(
     @ColumnInfo(name="category_id", index = true) val categoryId: Int,
     val location: String,
     val description: String,
-    val urlOrganizer: String
-
+    val urlOrganizer: String,
+    var isFavorite: Boolean
 ){
     @delegate:Ignore
     val category: EventCategory by lazy {
