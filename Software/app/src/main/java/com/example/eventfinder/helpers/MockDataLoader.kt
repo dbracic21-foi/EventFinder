@@ -46,6 +46,9 @@ object MockDataLoader {
 
             eventsDao.insertEvent(*events)
 
+
+
+
         }
 
     }

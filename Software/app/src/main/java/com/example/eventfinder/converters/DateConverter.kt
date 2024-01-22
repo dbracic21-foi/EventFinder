@@ -2,6 +2,9 @@ package com.example.eventfinder.converters
 
 import androidx.room.TypeConverter
 import java.util.Date
+import com.google.gson.Gson
+import com.google.gson.reflect.TypeToken
+
 
 class DateConverter {
     @TypeConverter
@@ -21,4 +24,8 @@ class DateConverter {
     fun toDate(timestamp: Long): Date{
         return Date(timestamp)
     }*/
+
+
+
+
 }

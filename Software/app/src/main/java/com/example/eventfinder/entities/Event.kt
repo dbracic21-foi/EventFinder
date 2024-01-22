@@ -28,7 +28,9 @@ data class Event(
     @ColumnInfo(name="category_id", index = true) val categoryId: Int,
     val location: String,
     val description: String,
-    val urlOrganizer: String
+    val urlOrganizer: String,
+
+
 
 ){
     @delegate:Ignore
