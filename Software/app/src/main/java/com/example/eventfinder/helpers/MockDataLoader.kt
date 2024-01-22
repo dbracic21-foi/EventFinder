@@ -17,6 +17,7 @@ object MockDataLoader {
                 EventCategory(2, "Edukativni", "#CCCCCC"),
                 EventCategory(3, "Volonterski", "#FF0000"),
             )
+
             DatabaseAPP.getInstance().getEventCategoriesDao().insertCategory(*categories)
 
             val dbCategories = eventCategoriesDao.getAllCategories()

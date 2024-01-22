@@ -37,15 +37,10 @@ class ViewerActivity : AppCompatActivity() {
         dataList = ArrayList(events)
         searchList.addAll(dataList)
 
-
         searchView = findViewById(R.id.search)
         recyclerView = findViewById(R.id.events)
         recyclerView.layoutManager = LinearLayoutManager(this)
         recyclerView.adapter = EventAdapter(searchList)
-
-
-
-
 
         searchView.clearFocus()
         searchView.setOnQueryTextListener(object: SearchView.OnQueryTextListener{
@@ -94,13 +89,16 @@ class ViewerActivity : AppCompatActivity() {
         btnClearFilters.setOnClickListener {
             clearFilters()
         }
+
+        val btnFavoriti: Button = findViewById(R.id.btn_favoriti)
+        btnFavoriti.setOnClickListener {
+            filterFavoriteEvents()
+        }
     }
 
     private fun filterEvents(category: String) {
         // Retrieve saved city names
         val savedCityNames = getSavedCityNames()
-        Log.d("ViewerActivity", "Saved City Names Status: ${savedCityNames.size}")
-        Log.d("ViewerActivity", "Saved City Names: $savedCityNames")
         val filteredEvents = when (category) {
             "Svi" -> {
                 if (savedCityNames.isEmpty()) {
@@ -128,7 +126,14 @@ class ViewerActivity : AppCompatActivity() {
 
         recyclerView.adapter = EventAdapter(filteredEvents.toMutableList())
     }
-
+    private fun filterFavoriteEvents() {
+        val favoriteEvents = DatabaseAPP.getInstance().getEventsDao().getAllEvents()
+            .filter { event -> event.isFavorite}
+        Log.d("ViewerActivity", "Favorite Events: $favoriteEvents")
+        val allEvents = DatabaseAPP.getInstance().getEventsDao().getAllEvents()
+        Log.d("ViewerActivity", "All Events: $allEvents")
+        recyclerView.adapter = EventAdapter(favoriteEvents.toMutableList())
+    }
 
 
     private fun getSavedCityNames(): List<String> {
