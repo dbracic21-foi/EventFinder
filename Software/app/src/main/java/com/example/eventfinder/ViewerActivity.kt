@@ -1,7 +1,16 @@
 package com.example.eventfinder
 
+import android.app.LauncherActivity
+import android.app.Notification
+import android.app.NotificationChannel
+import android.app.NotificationManager
+import android.app.PendingIntent
 import android.content.Context
 import android.content.Intent
+import android.graphics.BitmapFactory
+import android.graphics.Color
+import android.net.Uri
+import android.os.Build
 import android.os.Bundle
 import android.util.Log
 import android.widget.ArrayAdapter
@@ -20,6 +29,12 @@ import java.util.Locale
 
 class ViewerActivity : AppCompatActivity() {
 
+    lateinit var notificationManager: NotificationManager
+    lateinit var notificationChannel: NotificationChannel
+    lateinit var builder: Notification.Builder
+    private val channelId = "com.example.eventfinder"
+    private val description = "Test notification"
+
     private lateinit var recyclerView: RecyclerView
     private lateinit var searchView: SearchView
     private lateinit var searchList: ArrayList<Event>
@@ -36,6 +51,7 @@ class ViewerActivity : AppCompatActivity() {
         searchList = arrayListOf<Event>()
         dataList = ArrayList(events)
         searchList.addAll(dataList)
+
 
         searchView = findViewById(R.id.search)
         recyclerView = findViewById(R.id.events)
@@ -90,15 +106,57 @@ class ViewerActivity : AppCompatActivity() {
             clearFilters()
         }
 
-        val btnFavoriti: Button = findViewById(R.id.btn_favoriti)
-        btnFavoriti.setOnClickListener {
-            filterFavoriteEvents()
+        createNotification()
+    }
+    private fun getRandomEvent(): Event {
+        val allEvents = DatabaseAPP.getInstance().getEventsDao().getAllEvents()
+        val randomIndex = (0 until allEvents.size).random()
+        return allEvents[randomIndex]
+    }
+
+    private fun createNotification(){
+        notificationManager = getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
+
+        val randomEvent = getRandomEvent()
+
+        val browserIntent = Intent(Intent.ACTION_VIEW, Uri.parse(randomEvent.urlOrganizer))
+        val pendingIntent = PendingIntent.getActivity(
+            this,
+            0,
+            browserIntent,
+            PendingIntent.FLAG_UPDATE_CURRENT
+        )
+
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            notificationChannel = NotificationChannel(channelId, description, NotificationManager.IMPORTANCE_HIGH)
+            notificationChannel.enableLights(true)
+            notificationChannel.lightColor = Color.GREEN
+            notificationChannel.enableVibration(false)
+            notificationManager.createNotificationChannel(notificationChannel)
+
+            builder = Notification.Builder(this,channelId)
+                .setContentTitle("Preporučeno za vas")
+                .setContentText("${randomEvent.name}")
+                .setSmallIcon(R.drawable.ic_launcher_foreground)
+                .setLargeIcon(BitmapFactory.decodeResource(this.resources, R.drawable.ic_launcher_foreground))
+                .setContentIntent(pendingIntent)
+        }else{
+            builder = Notification.Builder(this)
+                .setContentTitle("Preporučeno za vas")
+                .setContentText("${randomEvent.name}")
+                .setSmallIcon(R.drawable.ic_launcher_foreground)
+                .setLargeIcon(BitmapFactory.decodeResource(this.resources, R.drawable.ic_launcher_foreground))
+                .setContentIntent(pendingIntent)
         }
+        notificationManager.notify(1234,builder.build())
     }
 
     private fun filterEvents(category: String) {
         // Retrieve saved city names
         val savedCityNames = getSavedCityNames()
+        Log.d("ViewerActivity", "Saved City Names Status: ${savedCityNames.size}")
+        Log.d("ViewerActivity", "Saved City Names: $savedCityNames")
         val filteredEvents = when (category) {
             "Svi" -> {
                 if (savedCityNames.isEmpty()) {
@@ -126,14 +184,7 @@ class ViewerActivity : AppCompatActivity() {
 
         recyclerView.adapter = EventAdapter(filteredEvents.toMutableList())
     }
-    private fun filterFavoriteEvents() {
-        val favoriteEvents = DatabaseAPP.getInstance().getEventsDao().getAllEvents()
-            .filter { event -> event.isFavorite}
-        Log.d("ViewerActivity", "Favorite Events: $favoriteEvents")
-        val allEvents = DatabaseAPP.getInstance().getEventsDao().getAllEvents()
-        Log.d("ViewerActivity", "All Events: $allEvents")
-        recyclerView.adapter = EventAdapter(favoriteEvents.toMutableList())
-    }
+
 
 
     private fun getSavedCityNames(): List<String> {
