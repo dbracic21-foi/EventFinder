@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="16dp"
+    android:background="#F5F5F5">
+
+    <!-- Naslov recenzija -->
+    <TextView
+        android:id="@+id/textViewReviewTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Recenzije"
+        android:textSize="28sp"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginBottom="16dp"
+        android:textColor="#333333"
+        android:textStyle="bold" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerViewReviews"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        tools:listitem="@layout/item_review"
+        android:background="#FFFFFF"
+        android:clipToPadding="false"
+        android:paddingTop="8dp" />
+
+    <Button
+        android:id="@+id/povratak"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Povratak"/>
+    <Button
+        android:id="@+id/novarecenzija"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Upiši vlastitu recenziju"/>
+</LinearLayout>

@@ -12,6 +12,7 @@ import android.widget.TextView
 import androidx.core.graphics.toColorInt
 import androidx.recyclerview.widget.RecyclerView
 import com.example.eventfinder.R
+import com.example.eventfinder.ReviewActivity
 import com.example.eventfinder.entities.Event
 import java.util.Locale
 
@@ -22,18 +23,26 @@ class EventAdapter(private val eventsList: List<Event>): RecyclerView.Adapter<Ev
         private val taskDueDate: TextView
         private val taskCategoryColor: SurfaceView
         private val  buttonRedirect : Button
+        private val  buttonReview: Button
 
         init {
             taskName = view.findViewById(R.id.tv_task_name)
             taskDueDate = view.findViewById(R.id.tv_task_due_date)
             taskCategoryColor = view.findViewById(R.id.sv_task_category_color)
             buttonRedirect = view.findViewById(R.id.buttonRedirect)
+            buttonReview = view.findViewById(R.id.buttonReview)
             buttonRedirect.setOnClickListener {
                 val event = eventsList[adapterPosition]
                 val intent = Intent(itemView.context, RedirectActivity::class.java)
                 intent.putExtra("urlOrganizer", event.urlOrganizer)
                 itemView.context.startActivity(intent)
                 
+            }
+            buttonReview.setOnClickListener {
+                val event = eventsList[adapterPosition]
+                val intent = Intent(itemView.context, ReviewActivity::class.java)
+                intent.putExtra("eventId", event.id)
+                itemView.context.startActivity(intent)
             }
         }
         fun bind(event: Event) {

@@ -16,6 +16,9 @@
         <activity android:name=".MapsFragment"/>
         <activity android:name=".ViewerActivity"/>
         <activity android:name=".RedirectActivity"/>
+        <activity android:name=".ReviewActivity"/>
+        <activity android:name=".NewReviewActivity"/>
+
         <activity
             android:name=".LoginActivity"
             android:exported="true">

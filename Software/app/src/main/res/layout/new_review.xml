@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="16dp">
+
+    <TextView
+        android:id="@+id/textViewTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Nova recenzija"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="16dp"/>
+
+    <EditText
+        android:id="@+id/editTextComment"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/textViewTitle"
+        android:layout_marginTop="160dp"
+        android:hint="Dodaj komentar"
+        android:inputType="textMultiLine"
+        android:maxLines="5"
+        android:background="#F5F5F5"
+        android:padding="8dp"
+        android:minHeight="48dp"
+    />
+
+
+    <RatingBar
+        android:id="@+id/ratingBar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/editTextComment"
+        android:layout_marginTop="16dp"
+        android:layout_centerHorizontal="true"
+        android:stepSize="0.5"
+        android:progressTint="@android:color/holo_orange_light"
+        android:outlineAmbientShadowColor="@android:color/holo_orange_light"/>
+
+    <Button
+        android:id="@+id/buttonAddComment"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/ratingBar"
+        android:layout_marginTop="24dp"
+        android:text="Dodaj komentar"
+        android:background="#4CAF50"
+        android:textColor="#FFFFFF"
+        android:layout_centerHorizontal="true"/>
+
+
+    <Button
+        android:id="@+id/buttonCancel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/buttonAddComment"
+        android:layout_marginTop="16dp"
+        android:text="Odustani"
+        android:layout_centerHorizontal="true"/>
+</RelativeLayout>

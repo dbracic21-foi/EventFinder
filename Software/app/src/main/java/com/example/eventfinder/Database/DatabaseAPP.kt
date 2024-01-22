@@ -6,8 +6,9 @@ import androidx.room.Room
 import androidx.room.RoomDatabase
 import com.example.eventfinder.entities.Event
 import com.example.eventfinder.entities.EventCategory
+import com.example.eventfinder.entities.Review
 
-@Database(entities = [User::class, Event::class, EventCategory::class], version = 5)
+@Database(entities = [User::class, Event::class, EventCategory::class,Review::class], version = 17)
 abstract class DatabaseAPP : RoomDatabase() {
     abstract  fun UsersDAO() : UsersDAO
 
