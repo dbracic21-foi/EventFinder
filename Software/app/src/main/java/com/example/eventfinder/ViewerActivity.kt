@@ -184,7 +184,11 @@ class ViewerActivity : AppCompatActivity() {
 
         recyclerView.adapter = EventAdapter(filteredEvents.toMutableList())
     }
-
+    private fun filterFavoriteEvents() {
+        val favoriteEvents = DatabaseAPP.getInstance().getEventsDao().getAllEvents()
+            .filter { event -> event.isFavorite}
+        recyclerView.adapter = EventAdapter(favoriteEvents.toMutableList())
+    }
 
 
     private fun getSavedCityNames(): List<String> {
