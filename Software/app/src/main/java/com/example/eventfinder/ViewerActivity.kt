@@ -129,9 +129,6 @@ class ViewerActivity : AppCompatActivity() {
     private fun filterFavoriteEvents() {
         val favoriteEvents = DatabaseAPP.getInstance().getEventsDao().getAllEvents()
             .filter { event -> event.isFavorite}
-        Log.d("ViewerActivity", "Favorite Events: $favoriteEvents")
-        val allEvents = DatabaseAPP.getInstance().getEventsDao().getAllEvents()
-        Log.d("ViewerActivity", "All Events: $allEvents")
         recyclerView.adapter = EventAdapter(favoriteEvents.toMutableList())
     }
 
