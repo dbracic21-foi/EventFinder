@@ -1,7 +1,16 @@
 package com.example.eventfinder
 
+import android.app.LauncherActivity
+import android.app.Notification
+import android.app.NotificationChannel
+import android.app.NotificationManager
+import android.app.PendingIntent
 import android.content.Context
 import android.content.Intent
+import android.graphics.BitmapFactory
+import android.graphics.Color
+import android.net.Uri
+import android.os.Build
 import android.os.Bundle
 import android.util.Log
 import android.widget.ArrayAdapter
@@ -19,6 +28,12 @@ import com.example.eventfinder.helpers.MockDataLoader
 import java.util.Locale
 
 class ViewerActivity : AppCompatActivity() {
+
+    lateinit var notificationManager: NotificationManager
+    lateinit var notificationChannel: NotificationChannel
+    lateinit var builder: Notification.Builder
+    private val channelId = "com.example.eventfinder"
+    private val description = "Test notification"
 
     private lateinit var recyclerView: RecyclerView
     private lateinit var searchView: SearchView
@@ -42,10 +57,6 @@ class ViewerActivity : AppCompatActivity() {
         recyclerView = findViewById(R.id.events)
         recyclerView.layoutManager = LinearLayoutManager(this)
         recyclerView.adapter = EventAdapter(searchList)
-
-
-
-
 
         searchView.clearFocus()
         searchView.setOnQueryTextListener(object: SearchView.OnQueryTextListener{
@@ -94,6 +105,51 @@ class ViewerActivity : AppCompatActivity() {
         btnClearFilters.setOnClickListener {
             clearFilters()
         }
+
+        createNotification()
+    }
+    private fun getRandomEvent(): Event {
+        val allEvents = DatabaseAPP.getInstance().getEventsDao().getAllEvents()
+        val randomIndex = (0 until allEvents.size).random()
+        return allEvents[randomIndex]
+    }
+
+    private fun createNotification(){
+        notificationManager = getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
+
+        val randomEvent = getRandomEvent()
+
+        val browserIntent = Intent(Intent.ACTION_VIEW, Uri.parse(randomEvent.urlOrganizer))
+        val pendingIntent = PendingIntent.getActivity(
+            this,
+            0,
+            browserIntent,
+            PendingIntent.FLAG_UPDATE_CURRENT
+        )
+
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            notificationChannel = NotificationChannel(channelId, description, NotificationManager.IMPORTANCE_HIGH)
+            notificationChannel.enableLights(true)
+            notificationChannel.lightColor = Color.GREEN
+            notificationChannel.enableVibration(false)
+            notificationManager.createNotificationChannel(notificationChannel)
+
+            builder = Notification.Builder(this,channelId)
+                .setContentTitle("Preporučeno za vas")
+                .setContentText("${randomEvent.name}")
+                .setSmallIcon(R.drawable.ic_launcher_foreground)
+                .setLargeIcon(BitmapFactory.decodeResource(this.resources, R.drawable.ic_launcher_foreground))
+                .setContentIntent(pendingIntent)
+        }else{
+            builder = Notification.Builder(this)
+                .setContentTitle("Preporučeno za vas")
+                .setContentText("${randomEvent.name}")
+                .setSmallIcon(R.drawable.ic_launcher_foreground)
+                .setLargeIcon(BitmapFactory.decodeResource(this.resources, R.drawable.ic_launcher_foreground))
+                .setContentIntent(pendingIntent)
+        }
+        notificationManager.notify(1234,builder.build())
     }
 
     private fun filterEvents(category: String) {
