@@ -8,6 +8,7 @@ import android.view.SurfaceView
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import android.widget.ImageView
 import android.widget.TextView
 import androidx.core.graphics.toColorInt
 import androidx.recyclerview.widget.RecyclerView
@@ -27,14 +28,9 @@ class EventAdapter(private val eventsList: List<Event>) :
         private val taskCategoryColor: SurfaceView = view.findViewById(R.id.sv_task_category_color)
         private val buttonRedirect: Button = view.findViewById(R.id.buttonRedirect)
         private val imageViewFavorite: ImageView = view.findViewById(R.id.imageViewFavorite)
-        private val  buttonReview: Button
+        private val  buttonReview: Button = view.findViewById(R.id.buttonReview)
 
         init {
-            taskName = view.findViewById(R.id.tv_task_name)
-            taskDueDate = view.findViewById(R.id.tv_task_due_date)
-            taskCategoryColor = view.findViewById(R.id.sv_task_category_color)
-            buttonRedirect = view.findViewById(R.id.buttonRedirect)
-            buttonReview = view.findViewById(R.id.buttonReview)
             buttonRedirect.setOnClickListener {
                 val event = eventsList[adapterPosition]
                 val intent = Intent(itemView.context, RedirectActivity::class.java)

@@ -106,6 +106,11 @@ class ViewerActivity : AppCompatActivity() {
             clearFilters()
         }
 
+        val btnFavoriti: Button = findViewById(R.id.btn_favoriti)
+        btnFavoriti.setOnClickListener {
+            filterFavoriteEvents()
+        }
+
         createNotification()
     }
     private fun getRandomEvent(): Event {
