@@ -3,12 +3,14 @@ package com.example.eventfinder.adapters
 import com.example.eventfinder.RedirectActivity
 import android.content.Intent
 import android.icu.text.SimpleDateFormat
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.SurfaceView
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.TextView
+import androidx.core.content.ContextCompat.startActivity
 import androidx.core.graphics.toColorInt
 import androidx.recyclerview.widget.RecyclerView
 import com.example.eventfinder.R
@@ -42,9 +44,12 @@ class EventAdapter(private val eventsList: List<Event>): RecyclerView.Adapter<Ev
                 val event = eventsList[adapterPosition]
                 val intent = Intent(itemView.context, ReviewActivity::class.java)
                 intent.putExtra("eventId", event.id)
+                Log.d("Evemt1","Rvem : ${event.id}")
                 itemView.context.startActivity(intent)
             }
+
         }
+
         fun bind(event: Event) {
             taskName.text = event.name
             taskDueDate.text = sdf.format(event.date)
@@ -53,6 +58,7 @@ class EventAdapter(private val eventsList: List<Event>): RecyclerView.Adapter<Ev
         }
 
     }
+
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): EventViewHolder {
         val taskView = LayoutInflater

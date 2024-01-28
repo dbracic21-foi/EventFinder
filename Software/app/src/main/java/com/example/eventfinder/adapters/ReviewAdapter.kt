@@ -1,4 +1,5 @@
 package com.example.eventfinder.adapters
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -8,7 +9,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.eventfinder.R
 import com.example.eventfinder.entities.Review
 
-class ReviewAdapter(private val reviews: List<Review>) :
+class ReviewAdapter(private var reviews: List<Review>) :
     RecyclerView.Adapter<ReviewAdapter.ReviewViewHolder>() {
 
     inner class ReviewViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
@@ -31,5 +32,15 @@ class ReviewAdapter(private val reviews: List<Review>) :
 
     override fun onBindViewHolder(holder: ReviewViewHolder, position: Int) {
         holder.bind(reviews[position])
+    }
+    fun setData(reviews: List<Review>) {
+        this.reviews = reviews
+        notifyDataSetChanged()
+    }
+    fun clearData() {
+        reviews = emptyList()
+        notifyDataSetChanged()
+        Log.d("ReviewAdapter", "Podaci o recenzijama su obrisani.")
+
     }
 }
