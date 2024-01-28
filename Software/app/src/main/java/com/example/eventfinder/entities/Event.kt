@@ -32,6 +32,8 @@ data class Event(
 
 
 
+
+    var isFavorite: Boolean
 ){
     @delegate:Ignore
     val category: EventCategory by lazy {

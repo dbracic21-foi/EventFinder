@@ -16,8 +16,6 @@
             android:layout_height="wrap_content"
             android:orientation="horizontal">
 
-
-
                 <LinearLayout
                     android:orientation="vertical"
                     android:layout_width="0dp"
@@ -26,7 +24,6 @@
                     android:layout_height="wrap_content"
                     android:layout_margin="5dp"
                     android:paddingTop="5dp">
-
 
                         <!-- TextInputLayout and AutoCompleteTextView -->
                         <com.google.android.material.textfield.TextInputLayout
@@ -54,6 +51,15 @@
                             android:onClick="onClearFiltersClick"
                             android:text="Očisti filtere" />
 
+                        <!-- Button for Favoriti -->
+                        <Button
+                            android:id="@+id/btn_favoriti"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="start"
+                            android:layout_marginTop="5dp"
+                            android:onClick="onFavoritiClick"
+                            android:text="Favoriti" />
 
                 </LinearLayout>
 
@@ -82,27 +88,26 @@
                             android:src="@drawable/ic_baseline_map_24" />
                 </LinearLayout>
         </LinearLayout>
-        
+
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
-
                 <androidx.appcompat.widget.SearchView
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                        android:layout_margin="12dp"
-                        android:id="@+id/search"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent"
-                        app:iconifiedByDefault="false"
-                        app:searchHintIcon="@null"
-                        app:queryHint="Trazi..."
-                        android:focusable="false"
-                        app:closeIcon="@drawable/ic_clear"
-                        app:searchIcon="@drawable/ic_search"
-                        android:background="@drawable/search_bkg"/>
+                    android:layout_margin="12dp"
+                    android:id="@+id/search"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:iconifiedByDefault="false"
+                    app:searchHintIcon="@null"
+                    app:queryHint="Trazi..."
+                    android:focusable="false"
+                    app:closeIcon="@drawable/ic_clear"
+                    app:searchIcon="@drawable/ic_search"
+                    android:background="@drawable/search_bkg"/>
 
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/events"
@@ -113,7 +118,6 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     />
-
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 

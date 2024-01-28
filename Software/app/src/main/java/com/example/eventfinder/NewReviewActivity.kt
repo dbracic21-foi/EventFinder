@@ -3,6 +3,10 @@ import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
+
+import android.content.Intent
+import android.os.Bundle
+import android.view.View
 import android.widget.Button
 import android.widget.EditText
 import android.widget.RatingBar
@@ -21,6 +25,12 @@ class NewReviewActivity : AppCompatActivity() {
         setContentView(R.layout.new_review)
        val eventId = intent.getIntExtra("eventId",-1)
         Log.d("Id eventa je","Id eventa je : $eventId")
+
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.new_review)
+
         editTextComment = findViewById(R.id.editTextComment)
         ratingBar = findViewById(R.id.ratingBar)
         buttonAddComment = findViewById(R.id.buttonAddComment)
@@ -53,4 +63,9 @@ class NewReviewActivity : AppCompatActivity() {
         finish()
     }
 
+
+        val ocjena = ratingBar.rating
+
+        finish()
+    }
 }

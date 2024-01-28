@@ -15,6 +15,13 @@ import androidx.room.PrimaryKey
 data class Review(
     @PrimaryKey(autoGenerate = true)
     val id: Int = 0,
+
+import androidx.room.PrimaryKey
+
+@Entity(tableName = "reviews")
+data class Review(
+    @PrimaryKey(autoGenerate = true)
+    val id: Long = 0,
     val eventID: Int,
     val rating: Float,
     val comment: String

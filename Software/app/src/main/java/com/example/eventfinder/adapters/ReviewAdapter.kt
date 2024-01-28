@@ -10,6 +10,8 @@ import com.example.eventfinder.R
 import com.example.eventfinder.entities.Review
 
 class ReviewAdapter(private var reviews: List<Review>) :
+
+class ReviewAdapter(private val reviews: List<Review>) :
     RecyclerView.Adapter<ReviewAdapter.ReviewViewHolder>() {
 
     inner class ReviewViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {

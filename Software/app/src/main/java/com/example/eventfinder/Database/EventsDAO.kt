@@ -5,6 +5,8 @@ import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
 import androidx.room.Transaction
+
+import androidx.room.Update
 import com.example.eventfinder.entities.Event
 
 @Dao
@@ -24,4 +26,7 @@ interface EventsDAO {
 
 
 
+
+    @Update
+    fun updateEvent(event: Event);
 }
