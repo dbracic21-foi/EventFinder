@@ -10,7 +10,6 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
-import androidx.room.Room
 import com.example.eventfinder.Database.DatabaseAPP
 import com.google.android.material.snackbar.Snackbar
 import kotlinx.coroutines.Dispatchers

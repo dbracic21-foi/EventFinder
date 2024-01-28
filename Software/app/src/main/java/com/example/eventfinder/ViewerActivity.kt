@@ -39,7 +39,9 @@ class ViewerActivity : AppCompatActivity() {
     private lateinit var searchView: SearchView
     private lateinit var searchList: ArrayList<Event>
     private lateinit var dataList: ArrayList<Event>
+
     override fun onCreate(savedInstanceState: Bundle?) {
+
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_combobox)
 
