@@ -1,6 +1,5 @@
 package com.example.eventfinder.adapters
 
-import com.example.eventfinder.RedirectActivity
 import android.content.Intent
 import android.icu.text.SimpleDateFormat
 import android.util.Log
@@ -11,11 +10,11 @@ import android.view.ViewGroup
 import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
-import androidx.core.content.ContextCompat.startActivity
 import androidx.core.graphics.toColorInt
 import androidx.recyclerview.widget.RecyclerView
 import com.example.eventfinder.Database.DatabaseAPP
 import com.example.eventfinder.R
+import com.example.eventfinder.RedirectActivity
 import com.example.eventfinder.ReviewActivity
 import com.example.eventfinder.entities.Event
 import java.util.Locale
@@ -30,6 +29,7 @@ class EventAdapter(private val eventsList: List<Event>) :
         private val taskCategoryColor: SurfaceView
         private val  buttonRedirect : Button
         private val  buttonReview: Button
+        private val  imageViewFavorite : ImageView
 
         init {
             taskName = view.findViewById(R.id.tv_task_name)
@@ -37,15 +37,9 @@ class EventAdapter(private val eventsList: List<Event>) :
             taskCategoryColor = view.findViewById(R.id.sv_task_category_color)
             buttonRedirect = view.findViewById(R.id.buttonRedirect)
             buttonReview = view.findViewById(R.id.buttonReview)
+            imageViewFavorite = view.findViewById(R.id.imageViewFavorite)
 
-        private val taskName: TextView = view.findViewById(R.id.tv_task_name)
-        private val taskDueDate: TextView = view.findViewById(R.id.tv_task_due_date)
-        private val taskCategoryColor: SurfaceView = view.findViewById(R.id.sv_task_category_color)
-        private val buttonRedirect: Button = view.findViewById(R.id.buttonRedirect)
-        private val imageViewFavorite: ImageView = view.findViewById(R.id.imageViewFavorite)
-        private val  buttonReview: Button = view.findViewById(R.id.buttonReview)
 
-        init {
             buttonRedirect.setOnClickListener {
                 val event = eventsList[adapterPosition]
                 val intent = Intent(itemView.context, RedirectActivity::class.java)
