@@ -10,7 +10,6 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
-import androidx.room.Room
 import com.example.eventfinder.Database.DatabaseAPP
 import com.google.android.material.snackbar.Snackbar
 import kotlinx.coroutines.Dispatchers
@@ -75,8 +74,9 @@ class LoginActivity : AppCompatActivity() {
         startActivity(intent)
         finish()
     }
-    fun openMainActivity(){
+    fun openMainActivity(id : Long){
         val intent = Intent(this,ViewerActivity :: class.java)
+        intent.putExtra("ARGUMENT_KEY", id)
         startActivity(intent)
         finish()
     }
@@ -90,7 +90,7 @@ class LoginActivity : AppCompatActivity() {
             println(user)
             launch (Dispatchers.Main){
                 if(user != null){
-                openMainActivity()
+                openMainActivity(user.id)
             }   else{
                 showErrorMessage("Krivo ste unijeli korisnicko ime ili lozinku")
                 println("Pogresno korisnicko ime ili lozinka")

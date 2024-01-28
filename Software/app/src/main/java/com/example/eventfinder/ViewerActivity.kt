@@ -34,17 +34,25 @@ class ViewerActivity : AppCompatActivity() {
     lateinit var builder: Notification.Builder
     private val channelId = "com.example.eventfinder"
     private val description = "Test notification"
-
     private lateinit var recyclerView: RecyclerView
     private lateinit var searchView: SearchView
     private lateinit var searchList: ArrayList<Event>
     private lateinit var dataList: ArrayList<Event>
+    private var userLocation: String = ""
+    private var userCategory: String = ""
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_combobox)
-
+        val userId: Long = intent.getLongExtra("ARGUMENT_KEY", 0)
         DatabaseAPP.buildInstance(applicationContext)
         MockDataLoader.loadMockData()
+        val currentUser = DatabaseAPP.getInstance().UsersDAO().getUserById(userId);
+        if(currentUser != null){
+            userLocation = currentUser.KeyInterestCity;
+            userCategory = currentUser.KeyInterestCategory;
+        }
+        Log.d("ViewerActivity", "Jebeni korisnik: $currentUser ")
+
 
         val events = DatabaseAPP.getInstance().getEventsDao().getAllEvents()
 
@@ -85,7 +93,7 @@ class ViewerActivity : AppCompatActivity() {
 
         })
 
-        val items = listOf("Svi", "Zabavni", "Edukativni", "Volonterski")
+        val items = listOf("Svi","Preporučeno","Zabavni", "Edukativni", "Volonterski")
         val autoComplete: AutoCompleteTextView = findViewById(R.id.auto_complete)
         val adapter = ArrayAdapter(this, R.layout.list_item, items)
         autoComplete.setAdapter(adapter)
@@ -171,6 +179,14 @@ class ViewerActivity : AppCompatActivity() {
                     // City names are selected, filter by both category and city names
                     val eventsDao = DatabaseAPP.getInstance().getEventsDao()
                     eventsDao.getEventsInCities(savedCityNames)
+                }
+            }
+            "Preporučeno" -> {
+                if (userLocation.isNotEmpty() && userCategory.isNotEmpty()) {
+                    DatabaseAPP.getInstance().getEventsDao().getEventsByLocationAndCategory(userLocation, userCategory)
+                } else {
+                    // Fallback to all events if user location or category is not available
+                    DatabaseAPP.getInstance().getEventsDao().getAllEvents()
                 }
             }
             else -> {

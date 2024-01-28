@@ -14,6 +14,8 @@
         android:theme="@style/Theme.EventFinder"
         tools:targetApi="31">
         <activity android:name=".RegistrationActivity"/>
+        <activity android:name=".PersonallizationActivity"/>
+        <activity android:name=".PersonalizationActivityCity"/>
         <activity android:name=".MapsFragment"/>
         <activity android:name=".ViewerActivity"/>
         <activity android:name=".RedirectActivity"/>

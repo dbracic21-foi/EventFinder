@@ -4,12 +4,12 @@ import android.content.Intent
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
+import android.util.Log
 import android.view.View
 import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
-import androidx.room.Room
 import com.example.eventfinder.Database.DatabaseAPP
 import com.example.eventfinder.Database.User
 import kotlinx.coroutines.Dispatchers
@@ -64,14 +64,22 @@ class RegistrationActivity : AppCompatActivity() {
                 lastName = editTextLastName!!.text.toString(),
                 username = editTextUsername!!.text.toString(),
                 pasword = editTextPassword!!.text.toString(),
-                Email = editTextEmail!!.text.toString()
+                Email = editTextEmail!!.text.toString(),
+                KeyInterestCategory = "",
+                KeyInterestCity = ""
             )
             GlobalScope.launch(Dispatchers.IO) {
                 DatabaseAPP.getInstance().UsersDAO().insertUser(newUser)
                 println("Korisnik uspjesno registriran : $newUser")
             }
+            val userSearch = DatabaseAPP.getInstance().UsersDAO().getLastInsertedUser();
+            Log.d("RegistrationActivity", "Jebeni korisnik registracija: $userSearch")
+            if(userSearch == null){
 
-            openLogin() }
+            }else{
+                openPersonalization(userSearch.id)
+            }
+        }
 
         textViewAlreadyLoggedIn!!.setOnClickListener {
             openLogin()
@@ -79,19 +87,24 @@ class RegistrationActivity : AppCompatActivity() {
     }
 
     private fun validateFields() {
-        // Provjeravamo jesu li sva polja ispunjena
         val allFieldsFilled = !editTextFirstName!!.text.isNullOrBlank() &&
                 !editTextLastName!!.text.isNullOrBlank() &&
                 !editTextUsername!!.text.isNullOrBlank() &&
                 !editTextPassword!!.text.isNullOrBlank() &&
                 !editTextEmail!!.text.isNullOrBlank()
 
-        // Postavljamo stanje gumba ovisno o rezultatu provjere
         button!!.isEnabled = allFieldsFilled
     }
 
     private fun openLogin() {
         val intent = Intent(this, LoginActivity::class.java)
+        startActivity(intent)
+        finish()
+    }
+
+    private fun openPersonalization(id_user: Long) {
+        val intent = Intent(this, PersonallizationActivity::class.java)
+        intent.putExtra("ARGUMENT_KEY", id_user)
         startActivity(intent)
         finish()
     }

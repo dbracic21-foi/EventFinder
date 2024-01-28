@@ -5,6 +5,8 @@
     <string name="lokacija">Odaberi lokaciju</string>
     <string name ="login_button_text">Prijavi se</string>
     <string name = "title_login">Event Finder</string>
+    <string name = "personalizaion">Odaberite grad koji Vas najviše interesira</string>
+    <string name = "category_choose">Odaberite kategoriju koja Vam je najinteresantnija</string>
     <string name = "username_email">Korisničko ime ili Email</string>
     <string name="password_login">Lozinka</string>
     <string name= "need_account">Niste registrirani !</string>

@@ -10,6 +10,7 @@ data class User (
     val lastName : String,
     val username : String,
     val pasword: String,
-    val Email : String
-
+    val Email : String,
+    var KeyInterestCategory: String,
+    var KeyInterestCity: String,
 )
