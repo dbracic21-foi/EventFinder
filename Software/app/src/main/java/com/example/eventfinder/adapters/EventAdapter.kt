@@ -1,8 +1,8 @@
 package com.example.eventfinder.adapters
 
-import com.example.eventfinder.RedirectActivity
 import android.content.Intent
 import android.icu.text.SimpleDateFormat
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.SurfaceView
 import android.view.View
@@ -14,6 +14,7 @@ import androidx.core.graphics.toColorInt
 import androidx.recyclerview.widget.RecyclerView
 import com.example.eventfinder.Database.DatabaseAPP
 import com.example.eventfinder.R
+import com.example.eventfinder.RedirectActivity
 import com.example.eventfinder.ReviewActivity
 import com.example.eventfinder.entities.Event
 import java.util.Locale
@@ -23,14 +24,22 @@ class EventAdapter(private val eventsList: List<Event>) :
 
     inner class EventViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         private val sdf: SimpleDateFormat = SimpleDateFormat("dd.MM.yyyy. HH:mm", Locale.ENGLISH)
-        private val taskName: TextView = view.findViewById(R.id.tv_task_name)
-        private val taskDueDate: TextView = view.findViewById(R.id.tv_task_due_date)
-        private val taskCategoryColor: SurfaceView = view.findViewById(R.id.sv_task_category_color)
-        private val buttonRedirect: Button = view.findViewById(R.id.buttonRedirect)
-        private val imageViewFavorite: ImageView = view.findViewById(R.id.imageViewFavorite)
-        private val  buttonReview: Button = view.findViewById(R.id.buttonReview)
+        private val taskName: TextView
+        private val taskDueDate: TextView
+        private val taskCategoryColor: SurfaceView
+        private val  buttonRedirect : Button
+        private val  buttonReview: Button
+        private val  imageViewFavorite : ImageView
 
         init {
+            taskName = view.findViewById(R.id.tv_task_name)
+            taskDueDate = view.findViewById(R.id.tv_task_due_date)
+            taskCategoryColor = view.findViewById(R.id.sv_task_category_color)
+            buttonRedirect = view.findViewById(R.id.buttonRedirect)
+            buttonReview = view.findViewById(R.id.buttonReview)
+            imageViewFavorite = view.findViewById(R.id.imageViewFavorite)
+
+
             buttonRedirect.setOnClickListener {
                 val event = eventsList[adapterPosition]
                 val intent = Intent(itemView.context, RedirectActivity::class.java)
@@ -51,7 +60,16 @@ class EventAdapter(private val eventsList: List<Event>) :
                 updateFavoriteImage(event.isFavorite)
                 updateEvent(event);
             }
+            buttonReview.setOnClickListener {
+                val event = eventsList[adapterPosition]
+                val intent = Intent(itemView.context, ReviewActivity::class.java)
+                intent.putExtra("eventId", event.id)
+                Log.d("Evemt1","Rvem : ${event.id}")
+                itemView.context.startActivity(intent)
+            }
+
         }
+
         fun bind(event: Event) {
             taskName.text = event.name
             taskDueDate.text = sdf.format(event.date)
@@ -71,6 +89,7 @@ class EventAdapter(private val eventsList: List<Event>) :
             imageViewFavorite.setImageResource(drawableResource)
         }
     }
+
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): EventViewHolder {
         val taskView = LayoutInflater

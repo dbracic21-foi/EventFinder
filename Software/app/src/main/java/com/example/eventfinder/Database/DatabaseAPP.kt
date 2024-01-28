@@ -8,12 +8,13 @@ import com.example.eventfinder.entities.Event
 import com.example.eventfinder.entities.EventCategory
 import com.example.eventfinder.entities.Review
 
-@Database(entities = [User::class, Event::class, EventCategory::class,Review::class], version = 17)
+@Database(entities = [User::class, Event::class, EventCategory::class,Review::class], version = 27)
 abstract class DatabaseAPP : RoomDatabase() {
     abstract  fun UsersDAO() : UsersDAO
 
     abstract fun getEventsDao(): EventsDAO
     abstract fun getEventCategoriesDao(): EventCategoriesDAO
+    abstract  fun getReviewsDao() : ReviewDAO
 
     companion object{
         @Volatile

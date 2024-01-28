@@ -4,6 +4,8 @@ import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
+import androidx.room.Transaction
+
 import androidx.room.Update
 import com.example.eventfinder.entities.Event
 
@@ -23,6 +25,7 @@ interface EventsDAO {
 
     @Query("SELECT * FROM events WHERE location = :location AND category_id = (SELECT id FROM event_categories WHERE name = :category)")
     fun getEventsByLocationAndCategory(location: String, category: String): List<Event>
+  
     @Update
     fun updateEvent(event: Event);
 }
