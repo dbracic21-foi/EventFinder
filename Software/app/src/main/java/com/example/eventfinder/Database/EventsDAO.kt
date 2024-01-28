@@ -21,6 +21,8 @@ interface EventsDAO {
     @Query("SELECT * FROM events WHERE location IN (:cityNames)")
     fun getEventsInCities(cityNames: List<String>): List<Event>
 
+    @Query("SELECT * FROM events WHERE location = :location AND category_id = (SELECT id FROM event_categories WHERE name = :category)")
+    fun getEventsByLocationAndCategory(location: String, category: String): List<Event>
     @Update
     fun updateEvent(event: Event);
 }
