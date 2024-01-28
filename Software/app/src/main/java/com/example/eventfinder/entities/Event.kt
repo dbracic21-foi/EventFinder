@@ -29,6 +29,10 @@ data class Event(
     val location: String,
     val description: String,
     val urlOrganizer: String,
+
+
+
+
     var isFavorite: Boolean
 ){
     @delegate:Ignore

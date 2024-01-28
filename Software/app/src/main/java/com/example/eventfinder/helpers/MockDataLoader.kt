@@ -3,12 +3,14 @@ package com.example.eventfinder.helpers
 import com.example.eventfinder.Database.DatabaseAPP
 import com.example.eventfinder.entities.Event
 import com.example.eventfinder.entities.EventCategory
+import com.example.eventfinder.entities.Review
 import java.util.Date
 
 object MockDataLoader {
     fun loadMockData(){
         val eventsDao = DatabaseAPP.getInstance().getEventsDao()
         val eventCategoriesDao = DatabaseAPP.getInstance().getEventCategoriesDao()
+        val reviewDao = DatabaseAPP.getInstance().getReviewsDao()
 
         if(eventsDao.getAllEvents().isEmpty() &&
             eventCategoriesDao.getAllCategories().isEmpty()){
@@ -51,6 +53,182 @@ object MockDataLoader {
 
 
         }
+        if (reviewDao.getAllReviews().isEmpty()) {
+            val reviews = arrayOf(
+                Review(eventID = 1, rating = 4.5f, comment = "Odlican koncert"),
+                Review(eventID = 1, rating = 2.5f, comment = "Loš koncert"),
+                Review(
+                    eventID = 5,
+                    rating = 4.0f,
+                    comment = "Sjajan stand-up show! Smijali smo se do suza."
+                ),
+                Review(
+                    eventID = 6,
+                    rating = 4.8f,
+                    comment = "Vrlo poučno predavanje o umjetnoj inteligenciji."
+                ),
+                Review(
+                    eventID = 7,
+                    rating = 3.5f,
+                    comment = "Volonterska akcija čišćenja parka je bila korisna."
+                ),
+                Review(
+                    eventID = 8,
+                    rating = 4.2f,
+                    comment = "Koncert lokalnog benda je bio nezaboravan."
+                ),
+                Review(
+                    eventID = 9,
+                    rating = 4.5f,
+                    comment = "Radionica digitalne fotografije je bila vrlo informativna."
+                ),
+                Review(
+                    eventID = 10,
+                    rating = 3.7f,
+                    comment = "Donacija hrane u humanitarnoj udruzi je bila divna."
+                ),
+                Review(
+                    eventID = 11,
+                    rating = 4.5f,
+                    comment = "Smijeh bez granica na stand-up showu."
+                ),
+                Review(
+                    eventID = 12,
+                    rating = 4.0f,
+                    comment = "Predavanje o očuvanju okoliša je bilo edukativno."
+                ),
+                Review(
+                    eventID = 13,
+                    rating = 3.2f,
+                    comment = "Volonterska akcija uređenja dječjeg vrtića je bila izazovna."
+                ),
+                Review(
+                    eventID = 14,
+                    rating = 4.8f,
+                    comment = "Koncert poznatog izvođača je bio spektakularan."
+                ),
+                Review(
+                    eventID = 15,
+                    rating = 4.2f,
+                    comment = "Radionica kreativnog pisanja je bila inspirativna."
+                ),
+                Review(
+                    eventID = 16,
+                    rating = 3.5f,
+                    comment = "Donacija odjeće i obuće izbjeglicama je plemenit čin."
+                ),
+                Review(
+                    eventID = 17,
+                    rating = 4.6f,
+                    comment = "Koncert indie benda je oduševio publiku."
+                ),
+                Review(
+                    eventID = 18,
+                    rating = 4.1f,
+                    comment = "Predavanje o raznolikosti u društvu je potrebno slušati."
+                ),
+                Review(
+                    eventID = 19,
+                    rating = 3.9f,
+                    comment = "Volonterska akcija sadnje drveća je očuvala prirodu."
+                ),
+                Review(
+                    eventID = 20,
+                    rating = 4.7f,
+                    comment = "Koncert jazz sastava je bio ugodno glazbeno iskustvo."
+                ),
+                Review(eventID = 1, rating = 4.2f, comment = "Još jedan nezaboravan koncert!"),
+                Review(
+                    eventID = 2,
+                    rating = 3.5f,
+                    comment = "Zanimljiva radionica, ali malo dugotrajna."
+                ),
+                Review(
+                    eventID = 3,
+                    rating = 4.7f,
+                    comment = "Doniranje krvi je uvijek plemenito djelo."
+                ),
+                Review(eventID = 4, rating = 4.0f, comment = "Central Cee je oduševio publiku."),
+                Review(eventID = 5, rating = 4.8f, comment = "Smijeh do suza uz stand-up show."),
+                Review(
+                    eventID = 6,
+                    rating = 4.3f,
+                    comment = "Fascinantno predavanje o umjetnoj inteligenciji."
+                ),
+                Review(
+                    eventID = 7,
+                    rating = 3.9f,
+                    comment = "Volonterska akcija čišćenja parka je bila uspješna."
+                ),
+                Review(
+                    eventID = 8,
+                    rating = 4.5f,
+                    comment = "Lokalni bend je pružio nevjerojatan koncert."
+                ),
+                Review(
+                    eventID = 9,
+                    rating = 4.1f,
+                    comment = "Radionica digitalne fotografije je inspirirajuća."
+                ),
+                Review(
+                    eventID = 10,
+                    rating = 3.7f,
+                    comment = "Donacija hrane je važna za zajednicu."
+                ),
+                Review(
+                    eventID = 11,
+                    rating = 4.6f,
+                    comment = "Smijeh bez granica na stand-up showu."
+                ),
+                Review(
+                    eventID = 12,
+                    rating = 3.8f,
+                    comment = "Predavanje o očuvanju okoliša je educiralo prisutne."
+                ),
+                Review(
+                    eventID = 13,
+                    rating = 3.0f,
+                    comment = "Volonterska akcija uređenja dječjeg vrtića."
+                ),
+                Review(
+                    eventID = 14,
+                    rating = 4.9f,
+                    comment = "Koncert poznatog izvođača je bio vrhunski."
+                ),
+                Review(
+                    eventID = 15,
+                    rating = 4.2f,
+                    comment = "Radionica kreativnog pisanja potaknula maštu."
+                ),
+                Review(
+                    eventID = 16,
+                    rating = 3.5f,
+                    comment = "Donacija odjeće i obuće izbjeglicama je srdačna gesta."
+                ),
+                Review(
+                    eventID = 17,
+                    rating = 4.7f,
+                    comment = "Indie bend je oduševio svojom glazbom."
+                ),
+                Review(
+                    eventID = 18,
+                    rating = 4.4f,
+                    comment = "Raznolikost u društvu je važna tema."
+                ),
+                Review(
+                    eventID = 19,
+                    rating = 3.9f,
+                    comment = "Volonterska akcija sadnje drveća zaštita prirode."
+                ),
+                Review(
+                    eventID = 20,
+                    rating = 4.5f,
+                    comment = "Jazz sastav je pružio ugodnu glazbenu atmosferu."
+                )
 
+
+            )
+            reviewDao.insertReview(*reviews)
+        }
     }
 }
